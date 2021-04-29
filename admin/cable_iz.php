@@ -16,24 +16,12 @@ endif;
 
 <body>
 
-<div class="navbar navbar-fixed-top bs-docs-nav" role="banner">
-  
-    <div class="container">
-      <!-- Menu button for smallar screens -->
-      <div class="navbar-header">
-      <button class="navbar-toggle btn-navbar" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-      <span>Menu</span>
-      </button>
-    </div>
-      
+<div>
       <?php include('../includes/topbar.php');?>
-    
-
-    </div>
-  </div>
+</div>
   <!-- Main content starts -->
 
-<div class="content" style="margin-top:10px">
+<div class="content">
 
     <!-- Sidebar -->
     <?php include('../includes/sidebar.php');?>

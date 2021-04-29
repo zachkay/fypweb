@@ -62,7 +62,7 @@ include('../includes/dbcon.php');
         $count=$row['count'];
 ?>             
                       <div class="col-md-4">
-                        <div class="alert alert-info">
+                        <div class="alert alert-dark">
                           <i class="fa fa-code-fork pull-left" style="font-size:65px"></i><h2> <?php echo $count;?> </h2>
                           <p><h4>Number of Cable Type</h4></p>
                         </div>
@@ -73,7 +73,7 @@ include('../includes/dbcon.php');
         $count=$row['count'];
 ?> 
                       <div class="col-md-4">
-                        <div class="alert alert-warning">
+                        <div class="alert alert-info">
                           <i class="fa fa-users pull-left" style="font-size:65px"></i><h2 class=""><?php echo $count;?></h2>
                           <p><h4>Number of User</h4></p>                        
                         </div>
@@ -84,7 +84,7 @@ include('../includes/dbcon.php');
         $count=$row['count'];
 ?> 
                       <div class="col-md-4">
-                        <div class="alert alert-success">
+                        <div class="alert alert-warning">
                           <i class="fa fa-comments-o pull-left" style="font-size:65px"></i><h2><?php echo $count;?></h2>
                           <p><h4>Feedback Messages</h4></p>
                         </div>

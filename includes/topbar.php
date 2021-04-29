@@ -1,14 +1,7 @@
-<div class="navbar navbar-fixed-top bs-docs-nav justify-content-between" role="banner">
-	<div class="container">
-      <!-- Menu button for smallar screens -->
-      <!-- <div class="navbar-header">
-		  <button class="navbar-toggle btn-navbar" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-			
-		  </button>
-		  
-		</div> -->
+<div class="navbar navbar-fixed-top bs-docs-nav" role="banner">
+
 		<!-- Navigation starts -->
-    <nav>  
+<nav>  
 	      <ul class="nav navbar-nav">  
           <!-- Upload to server link. Class "dropdown-big" creates big dropdown -->
           <li class="dropdown dropdown-big ">
@@ -17,24 +10,9 @@
           </li>
           <!-- Sync to server link -->
         </ul>
+</nav>
 
-        <!-- Search form -->
-       
-        <!-- Links -->
-       <ul class="nav navbar-nav pull-right">
-       <li class="dropdown pull-right">            
-           <a href="#login" data-toggle="dropdown">
-              <i class="fa fa-user"></i> Admin
-            </a>		        
-            <!-- Dropdown menu -->
-           <ul class="dropdown-menu">            
-              <li><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></li>
-            </ul>
-          </li>
-          
-        </ul>
-      </nav> 
+<button type="button" class="btn btn-light btn-sm"><a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a></button>
 
-    </div>
-	</div>
+</div>
 	
