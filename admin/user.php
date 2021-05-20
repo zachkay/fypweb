@@ -9,7 +9,7 @@ endif;
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <!-- Title and other stuffs -->
-  <title>Cable Iz - <?php include('../includes/title.php');?></title>
+  <title>User Details - <?php include('../includes/title.php');?></title>
   <?php include('../includes/links.php');?>
   
 </head>
@@ -33,16 +33,16 @@ endif;
       
       <!-- Page heading -->
       <div class="page-head">
-        <h2 class="pull-left"><i class="fa fa-code-fork"></i> Cable Data</h2>
+        <h2 class="pull-left"><i class="fa fa-users"></i> Persons Details</h2>
 
         <!-- Breadcrumb -->
         <div class="bread-crumb pull-right">
-          <a href="index.html"><i class="fa fa-home"></i> Home</a> 
+          <a href="dashboard.php"><i class="fa fa-home"></i> Home</a> 
           <!-- Divider -->
           <span class="divider">/</span> 
-          <a href="#" class="bread-current">Cable Data</a>
+          <a href="#" class="bread-current">Persons Details</a>
           <span class="divider">/</span> 
-          <a href="#" class="bread-current">Cable Iz</a>
+          <a href="#" class="bread-current">User</a>
         </div>
 
         <div class="clearfix"></div>
@@ -64,8 +64,8 @@ endif;
 
               <div class="widget">
                 <div class="widget-head">
-                  <div class="pull-left"> Cable Iz  &nbsp
-                  <a href="#addModal" class="btn btn-dark btn-sm" data-toggle="modal">Add New Item</a>
+                  <div class="pull-left"> User Details  &nbsp
+                  <a href="#addModal" class="btn btn-dark btn-sm" data-toggle="modal">Add New User</a>
                   </div>
                   <div class="widget-icons pull-right">
                     <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
@@ -83,9 +83,10 @@ endif;
                   <table cellpadding="0" cellspacing="0" border="0" id="data-table" width="100%">
                     <thead>
                       <tr>
-                        <th>Cable Name</th>
-                        <th>Cable Size (mm&sup2;)</th>
-                        <th>Cable Iz (A)</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile No.</th>
+                        <th>Password</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -93,19 +94,19 @@ endif;
 <?php
 include('../includes/dbcon.php');
 
-    $query=mysqli_query($con,"SELECT * FROM cable_iz 
-    INNER JOIN cable_type ON cable_iz.type_id = cable_type.type_id
-    INNER JOIN cable_size ON cable_iz.size_id = cable_size.size_id")or die(mysqli_error($con));
+    $query=mysqli_query($con,"SELECT * FROM user")or die(mysqli_error($con));
       while ($row=mysqli_fetch_array($query)){
-        $id=$row['iz_id'];
-        $cname=$row['cable_name'];
-        $csize=$row['size'];
-        $ciz=$row['iz'];
+        $id=$row['id'];
+        $name=$row['Name'];
+        $email=$row['Email'];
+        $mobile=$row['Mobile'];
+        $pwd=$row['Password'];
 ?>                      
                       <tr>
-                        <td><?php echo $cname;?></td>
-                        <td><?php echo $csize;?></td>
-                        <td><?php echo $ciz;?></td>
+                        <td><?php echo $name;?></td>
+                        <td><?php echo $email;?></td>
+                        <td><?php echo $mobile;?></td>
+                        <td><?php echo $pwd;?></td>
                         <td>
                       
                               <a href="#update" class="btn btn-warning btn-sm" data-target="#update<?php echo $id;?>" data-toggle="modal">
@@ -122,68 +123,53 @@ include('../includes/dbcon.php');
 <div id="update<?php echo $id;?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title">Update Item Details</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>          
+            <div class="modal-header">              
+            <h4 class="modal-title">Update User Details</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <div class="modal-body" style="height:320px">
+            <div class="modal-body" style="height:380px">
               
             <!--start form-->
-              <form class="form-horizontal" method="post" action="cable_iz_update.php" enctype='multipart/form-data'>
+              <form class="form-horizontal" method="post" action="user_update.php" enctype='multipart/form-data'>
                   
               <!-- Title -->
                   <input type="hidden" name="id" value="<?php echo $id;?>">
                   <!-- Title -->
                   <div class="form-group">
-                      <label class="control-label col-lg-4" for="title">Cable Name</label>
+                      <label class="control-label col-lg-4" for="title">Name</label>
                       <div class="col-lg-12"> 
-                        <select class="form-control form-control-sm" id="exampleSelect1" name="drop_name" required>
-                        <option value="">--Select Cable Name--</option>
-                         <?php
-                            include('../includes/dbcon.php');
-
-                              $result = mysqli_query($con,"SELECT * FROM cable_type"); 
-                                  while ($row = mysqli_fetch_assoc($result)){
-
-                                ?>
-                                <option value="<?php echo $row['type_id'];?>"><?php echo $row['cable_name'];?></option>
-                        <?php } ?>
-                        </select>
+                        <input type="text" class="form-control form-control-sm" name="txt_name" id="title" value="<?php echo $name;?>" placeholder="Enter Name">
                       </div>
                   </div>
                   <!-- Title -->
                   <div class="form-group">
-                      <label class="control-label col-lg-4" for="title">Cable Size</label>
+                      <label class="control-label col-lg-4" for="title">Email</label>
                       <div class="col-lg-12"> 
-                        <select class="form-control form-control-sm" id="exampleSelect1" name="drop_size" required>
-                        <option value="">--Select Cable Size--</option>
-                         <?php
-                            include('../includes/dbcon.php');
-
-                              $result = mysqli_query($con,"SELECT * FROM cable_size"); 
-                                  while ($row = mysqli_fetch_assoc($result)){
-
-                                ?>
-                                <option value="<?php echo $row['size_id'];?>"><?php echo $row['size'];?></option>
-                        <?php } ?>
-                        </select>
+                        <input type="text" class="form-control form-control-sm" name="txt_email" id="title" value="<?php echo $email;?>" placeholder="Enter Email">
                       </div>
                   </div>
                   <!-- Title -->
                   <div class="form-group">
-                      <label class="control-label col-lg-4" for="title">Cable Iz</label>
+                      <label class="control-label col-lg-4" for="title">Mobile No.</label>
                       <div class="col-lg-12"> 
-                        <input type="number" step="0.1" class="form-control form-control-sm" name="txt_iz" id="title" value="<?php echo $ciz;?>" placeholder="Enter Cable Iz" required>
+                        <input type="text" class="form-control form-control-sm" name="txt_mobile" id="title" value="<?php echo $mobile;?>" placeholder="Enter Mobile No.">
+                      </div>
+                  </div>
+                  <!-- Title -->
+                  <div class="form-group">
+                      <label class="control-label col-lg-4" for="title">Password</label>
+                      <div class="col-lg-12"> 
+                        <input type="text" class="form-control form-control-sm" name="txt_pwd" id="title" value="<?php echo $pwd;?>" placeholder="Enter Password">
                       </div>
                   </div>
                               
-                  <!-- Buttons -->                  
+                  <!-- Buttons -->
                   <div class="form-group">
                     <center>
                         <br><button type="submit" class="btn btn-sm btn-primary" name="update">Update</button>
                         <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal" aria-hidden="true">Close</button>
                     </center>
-                  </div>
+                  </div>  
 
               </form>
               <!--end form-->
@@ -198,66 +184,51 @@ include('../includes/dbcon.php');
 <div id="addModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title">Add New Item</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>          
+            <div class="modal-header">              
+            <h4 class="modal-title">Add New User</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <div class="modal-body" style="height:320px">
+            <div class="modal-body" style="height:380px">
               
             <!--start form-->
-            <form class="form-horizontal" method="post" action="cable_iz_save.php" enctype='multipart/form-data'>
+            <form class="form-horizontal" method="post" action="user_save.php" enctype='multipart/form-data'>
                   
                   <!-- Title -->
                   <div class="form-group">
-                      <label class="control-label col-lg-4" for="title">Cable Name</label>
+                      <label class="control-label col-lg-4" for="title">Name</label>
                       <div class="col-lg-12"> 
-                        <select class="form-control form-control-sm" id="exampleSelect1" name="drop_name" required>
-                        <option value="">--Select Cable Name--</option>
-                         <?php
-                            include('../includes/dbcon.php');
-
-                              $result = mysqli_query($con,"SELECT * FROM cable_type"); 
-                                  while ($row = mysqli_fetch_assoc($result)){
-
-                                ?>
-                                <option value="<?php echo $row['type_id'];?>"><?php echo $row['cable_name'];?></option>
-                        <?php } ?>
-                        </select>
+                        <input type="text" class="form-control form-control-sm" name="txt_name" id="title" placeholder="Enter Name" required>
                       </div>
                   </div>
                   <!-- Title -->
                   <div class="form-group">
-                      <label class="control-label col-lg-4" for="title">Cable Size</label>
+                      <label class="control-label col-lg-4" for="title">Email</label>
                       <div class="col-lg-12"> 
-                        <select class="form-control form-control-sm" id="exampleSelect1" name="drop_size" required>
-                        <option value="">--Select Cable Size--</option>
-                         <?php
-                            include('../includes/dbcon.php');
-
-                              $result = mysqli_query($con,"SELECT * FROM cable_size"); 
-                                  while ($row = mysqli_fetch_assoc($result)){
-
-                                ?>
-                                <option value="<?php echo $row['size_id'];?>"><?php echo $row['size'];?></option>
-                        <?php } ?>
-                        </select>
+                        <input type="text" class="form-control form-control-sm" name="txt_email" id="title" placeholder="Enter Email" required>
                       </div>
                   </div>
                   <!-- Title -->
                   <div class="form-group">
-                      <label class="control-label col-lg-4" for="title">Cable Iz</label>
+                      <label class="control-label col-lg-4" for="title">Mobile No.</label>
                       <div class="col-lg-12"> 
-                        <input type="number" step="0.1" class="form-control form-control-sm" name="txt_iz" id="title" placeholder="Enter Cable Iz" required>
+                        <input type="text" class="form-control form-control-sm" name="txt_mobile" id="title" placeholder="Enter Mobile No." required>
+                      </div>
+                  </div>
+                  <!-- Title -->
+                  <div class="form-group">
+                      <label class="control-label col-lg-4" for="title">Password</label>
+                      <div class="col-lg-12"> 
+                        <input type="text" class="form-control form-control-sm" name="txt_pwd" id="title" placeholder="Enter Password" required>
                       </div>
                   </div>
                               
-                  <!-- Buttons -->                
+                  <!-- Buttons -->
                   <div class="form-group">
                     <center>
                         <br><button type="submit" class="btn btn-sm btn-success">Save</button>
                         <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal" aria-hidden="true">Close</button>
                     </center>
-                  </div>
+                  </div>  
               </form>
               <!--end form-->
             </div>
@@ -271,24 +242,24 @@ include('../includes/dbcon.php');
 <div id="delete<?php echo $id;?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title">Delete Item</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>              
+            <div class="modal-header">              
+            <h4 class="modal-title">Delete User</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <div class="modal-body" style="height:120px">
+            <div class="modal-body" style="height:140px">
               <!--start form-->
               <form class="form-horizontal" method="post">
                   <input type="hidden" class="form-control" name="id" value="<?php echo $id;?>">
                   <div class="alert alert-danger">
-                      Are you sure you want to delete this item <?php echo $cname,", Size=",$csize,", Iz=",$ciz;?> ?
+                      Are you sure you want to delete this User, <?php echo "Name=",$name,", Email=",$email;?> ?
                     </div>                     
                   <!-- Buttons -->
                   <div class="form-group">
                       <!-- Buttons -->
-                    <center>
+                      <center>
                         <button type="submit" class="btn btn-sm btn-danger" name="del">Delete</button>
                         <button type="button" class="btn btn-dark btn-sm" data-dismiss="modal" aria-hidden="true">Close</button>
-                    </center>
+                      </center>
                   </div>
               </form>
               <!--end form-->
@@ -305,9 +276,9 @@ include('../includes/dbcon.php');
     $id=$_POST['id'];
 
   // sending query
-  mysqli_query($con,"DELETE FROM cable_iz WHERE iz_id='$id'")
+  mysqli_query($con,"DELETE FROM user WHERE id='$id'")
   or die(mysqli_error($con));
-  echo "<script>document.location='cable_iz.php'</script>";
+  echo "<script>document.location='user.php'</script>";
     }
 ?>
 

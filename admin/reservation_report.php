@@ -16,23 +16,9 @@ endif;
 
 <body>
 
-<div class="navbar navbar-fixed-top bs-docs-nav" role="banner">
-  
-    <div class="conjtainer">
-      <!-- Menu button for smallar screens -->
-      <div class="navbar-header">
-      <button class="navbar-toggle btn-navbar" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-      <span>Menu</span>
-      </button>
-      <!-- Site name for smallar screens -->
-      <a href="index.html" class="navbar-brand hidden-lg">Chimney</a>
-    </div>
-      
+<div>
       <?php include('../includes/topbar.php');?>
-    
-
-    </div>
-  </div>
+</div>
 
 
 

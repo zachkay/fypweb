@@ -1,6 +1,5 @@
 <?php include 'header.php';?>
 
-
 <body class = "admin_body" style = "background-color:#808080 !important; background:none;">
 <!-- <div>
 <center>
@@ -20,7 +19,7 @@
   <div class="lockscreen-item">
     <!-- lockscreen image -->
     <div class="lockscreen-image">
-      <img src="../img/admin2.png" alt="User Image">
+      <img src="../img/BuDEE.png" alt="User Image">
     </div>
     <!-- /.lockscreen-image -->
 

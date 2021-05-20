@@ -14,15 +14,15 @@ endif;
   border: 16px solid #f3f3f3;
   border-radius: 50%;
   border-top: 16px solid blue;
-  border-right: 16px solid green;
-  border-bottom: 16px solid red;
-  border-left: 16px solid pink;
+  border-right: 16px solid whitesmoke;
+  border-bottom: 16px solid blue;
+  border-left: 16px solid whitesmoke;
   width: 120px;
   height: 120px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
   margin:auto;
-  
+  margin-top: 200px;
 }
 
 @-webkit-keyframes spin {
@@ -36,8 +36,8 @@ endif;
 }
 </style>
 </head>
-<body>
-<div style="width:100%;text-align:center; vertical-align:bottom">
+<body style = "background-color:#808080 !important; background:none;">
+<div style="width:100%; text-align:center; vertical-align:bottom">
 		<div class="loader"></div>
 <?php
 
@@ -45,7 +45,7 @@ endif;
 	
  echo '<meta http-equiv="refresh" content="2;url=index.php">';
  
- echo'<span class="itext">Logging out. Please wait!...</span>';
+ echo'<h3 style=color:white;>Logging out... Please wait...!</h3>';
 ?>
 </div>
 </body>

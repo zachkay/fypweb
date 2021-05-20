@@ -9,14 +9,14 @@ endif;
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <!-- Title and other stuffs -->
-  <title>Breaker Size - <?php include('../includes/title.php');?></title>
+  <title>Admin Details - <?php include('../includes/title.php');?></title>
   <?php include('../includes/links.php');?>
   
 </head>
 
 <body>
 
-<div>    
+<div>
       <?php include('../includes/topbar.php');?>
 </div>
   <!-- Main content starts -->
@@ -33,16 +33,16 @@ endif;
       
       <!-- Page heading -->
       <div class="page-head">
-        <h2 class="pull-left"><i class="fa fa-code-fork"></i> Cable Data</h2>
+        <h2 class="pull-left"><i class="fa fa-users"></i> Persons Details</h2>
 
         <!-- Breadcrumb -->
         <div class="bread-crumb pull-right">
           <a href="dashboard.php"><i class="fa fa-home"></i> Home</a> 
           <!-- Divider -->
           <span class="divider">/</span> 
-          <a href="#" class="bread-current">Cable Data</a>
+          <a href="#" class="bread-current">Persons Details</a>
           <span class="divider">/</span> 
-          <a href="#" class="bread-current">Breaker Size</a>
+          <a href="#" class="bread-current">Admin</a>
         </div>
 
         <div class="clearfix"></div>
@@ -64,8 +64,8 @@ endif;
 
               <div class="widget">
                 <div class="widget-head">
-                  <div class="pull-left"> Breaker Size  &nbsp
-                  <a href="#addModal" class="btn btn-dark btn-sm" data-toggle="modal">Add New Item</a>
+                  <div class="pull-left"> Admin Details  &nbsp
+                  <a href="#addModal" class="btn btn-dark btn-sm" data-toggle="modal">Add New Admin</a>
                   </div>
                   <div class="widget-icons pull-right">
                     <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
@@ -83,8 +83,9 @@ endif;
                   <table cellpadding="0" cellspacing="0" border="0" id="data-table" width="100%">
                     <thead>
                       <tr>
-                        <th>Breaker Id</th>
-                        <th>Breaker Size</th>
+                        <th>Fullname</th>
+                        <th>Username</th>
+                        <th>Password</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -92,14 +93,17 @@ endif;
 <?php
 include('../includes/dbcon.php');
 
-    $query=mysqli_query($con,"SELECT * FROM breaker_size")or die(mysqli_error($con));
+    $query=mysqli_query($con,"SELECT * FROM admin")or die(mysqli_error($con));
       while ($row=mysqli_fetch_array($query)){
-        $id=$row['breaker_id'];
-        $bsize=$row['size'];
+        $id=$row['admin_id'];
+        $fname=$row['fullname'];
+        $uname=$row['username'];
+        $pwd=$row['password'];
 ?>                      
                       <tr>
-                        <td><?php echo $id;?></td>
-                        <td><?php echo $bsize;?></td>
+                        <td><?php echo $fname;?></td>
+                        <td><?php echo $uname;?></td>
+                        <td><?php echo $pwd;?></td>
                         <td>
                       
                               <a href="#update" class="btn btn-warning btn-sm" data-target="#update<?php echo $id;?>" data-toggle="modal">
@@ -116,31 +120,47 @@ include('../includes/dbcon.php');
 <div id="update<?php echo $id;?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title">Update Item Details</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>              
+            <div class="modal-header">              
+            <h4 class="modal-title">Update Admin Details</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <div class="modal-body" style="height:160px">
+            <div class="modal-body" style="height:310px">
               
             <!--start form-->
-              <form class="form-horizontal" method="post" action="breaker_size_update.php" enctype='multipart/form-data'>
-                  <!-- Title -->
+              <form class="form-horizontal" method="post" action="admin_update.php" enctype='multipart/form-data'>
+                  
+              <!-- Title -->
                   <input type="hidden" name="id" value="<?php echo $id;?>">
                   <!-- Title -->
                   <div class="form-group">
-                      <label class="control-label col-lg-4" for="title">Breaker Size</label>
+                      <label class="control-label col-lg-4" for="title">Fullname</label>
                       <div class="col-lg-12"> 
-                        <input type="number" class="form-control form-control-sm" name="txt_breaker" id="title" value="<?php echo $bsize;?>" placeholder="Enter Breaker Size" required>
+                        <input type="text" class="form-control form-control-sm" name="txt_fname" id="title" value="<?php echo $fname;?>" placeholder="Enter Fullname">
+                      </div>
+                  </div>
+                  <!-- Title -->
+                  <div class="form-group">
+                      <label class="control-label col-lg-4" for="title">Username</label>
+                      <div class="col-lg-12"> 
+                        <input type="text" class="form-control form-control-sm" name="txt_uname" id="title" value="<?php echo $uname;?>" placeholder="Enter Username">
+                      </div>
+                  </div>
+                  <!-- Title -->
+                  <div class="form-group">
+                      <label class="control-label col-lg-4" for="title">Password</label>
+                      <div class="col-lg-12"> 
+                        <input type="text" class="form-control form-control-sm" name="txt_pwd" id="title" value="<?php echo $pwd;?>" placeholder="Enter Password">
                       </div>
                   </div>
                               
                   <!-- Buttons -->
                   <div class="form-group">
-                      <center>
+                    <center>
                         <br><button type="submit" class="btn btn-sm btn-primary" name="update">Update</button>
                         <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal" aria-hidden="true">Close</button>
-                      </center>
+                    </center>
                   </div>  
+
               </form>
               <!--end form-->
             </div>
@@ -154,29 +174,43 @@ include('../includes/dbcon.php');
 <div id="addModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">                
-              <h4 class="modal-title">Add New Item</h4>
+            <div class="modal-header">              
+            <h4 class="modal-title">Add New Admin</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <div class="modal-body" style="height:160px">
+            <div class="modal-body" style="height:310px">
               
             <!--start form-->
-            <form class="form-horizontal" method="post" action="breaker_size_save.php" enctype='multipart/form-data'>
+            <form class="form-horizontal" method="post" action="admin_save.php" enctype='multipart/form-data'>
                   
                   <!-- Title -->
                   <div class="form-group">
-                      <label class="control-label col-lg-4" for="title">Breaker Size</label>
+                      <label class="control-label col-lg-4" for="title">Fullname</label>
                       <div class="col-lg-12"> 
-                        <input type="number" class="form-control form-control-sm" name="txt_breaker" id="title" placeholder="Enter Breaker Size" required>
+                        <input type="text" class="form-control form-control-sm" name="txt_fname" id="title" placeholder="Enter Fullname" required>
+                      </div>
+                  </div>
+                  <!-- Title -->
+                  <div class="form-group">
+                      <label class="control-label col-lg-4" for="title">Username</label>
+                      <div class="col-lg-12"> 
+                        <input type="text" class="form-control form-control-sm" name="txt_uname" id="title" placeholder="Enter Username" required>
+                      </div>
+                  </div>
+                  <!-- Title -->
+                  <div class="form-group">
+                      <label class="control-label col-lg-4" for="title">Password</label>
+                      <div class="col-lg-12"> 
+                        <input type="text" class="form-control form-control-sm" name="txt_pwd" id="title" placeholder="Enter Password" required>
                       </div>
                   </div>
                               
                   <!-- Buttons -->
                   <div class="form-group">
-                      <center>
+                    <center>
                         <br><button type="submit" class="btn btn-sm btn-success">Save</button>
                         <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal" aria-hidden="true">Close</button>
-                      </center>
+                    </center>
                   </div>  
               </form>
               <!--end form-->
@@ -191,16 +225,16 @@ include('../includes/dbcon.php');
 <div id="delete<?php echo $id;?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">                
-              <h4 class="modal-title">Delete Item</h4>
+            <div class="modal-header">              
+            <h4 class="modal-title">Delete Admin</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <div class="modal-body" style="height:120px">
+            <div class="modal-body" style="height:140px">
               <!--start form-->
               <form class="form-horizontal" method="post">
                   <input type="hidden" class="form-control" name="id" value="<?php echo $id;?>">
                   <div class="alert alert-danger">
-                      Are you sure you want to delete this item, <?php echo "Breaker Size= ",$bsize;?>?
+                      Are you sure you want to delete this admin, <?php echo "Fullname=",$fname,", Username=",$uname;?> ?
                     </div>                     
                   <!-- Buttons -->
                   <div class="form-group">
@@ -225,9 +259,9 @@ include('../includes/dbcon.php');
     $id=$_POST['id'];
 
   // sending query
-  mysqli_query($con,"DELETE FROM breaker_size WHERE breaker_id='$id'")
+  mysqli_query($con,"DELETE FROM admin WHERE admin_id='$id'")
   or die(mysqli_error($con));
-  echo "<script>document.location='breaker_size.php'</script>";
+  echo "<script>document.location='admin.php'</script>";
     }
 ?>
 

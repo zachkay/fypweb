@@ -79,7 +79,7 @@ include('../includes/dbcon.php');
                         </div>
                       </div>
 <?php
-    $query=mysqli_query($con,"SELECT COUNT(iz_id) AS count FROM cable_iz")or die(mysqli_error($con));
+    $query=mysqli_query($con,"SELECT COUNT(feedback_id) AS count FROM feedback")or die(mysqli_error($con));
       $row=mysqli_fetch_array($query);
         $count=$row['count'];
 ?> 

@@ -2,7 +2,7 @@
 
 include('../includes/dbcon.php');
 	
-$id = $_POST['id'];
+// $id = $_POST['id'];
 $cname = $_POST['txt_name'];
 $ccore = $_POST['txt_core'];
 $tab_ref = $_POST['txt_tabref'];
