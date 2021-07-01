@@ -82,7 +82,8 @@ endif;
                   <table cellpadding="0" cellspacing="0" border="0" id="data-table" width="100%">
                     <thead>
                       <tr>
-                        <th>Date</th>
+						            <th>Date</th>
+                        <th>User ID</th>
                         <th>From</th>
                         <th>To</th>
                         <th>Estimated Distance</th>
@@ -91,7 +92,7 @@ endif;
                         <th>Cable Iz (A)</th>
                         <th>Calculated VD (V)</th>
                         <th>Calculated VD %</th>
-                        <th>Allowed VD (V)</th>
+                        <th>Allowed VD %</th>
                         <th>Cable Quantity</th>
                         <th>Cable Price (RM)</th>
                         <th>Overall Price (RM)</th>
@@ -104,6 +105,7 @@ include('../includes/dbcon.php');
     $query=mysqli_query($con,"SELECT * FROM calculation_data")or die(mysqli_error($con));
       while ($row=mysqli_fetch_array($query)){
         $id=$row['data_id'];
+        $u_id=$row['user_id'];
         $date=$row['date'];
         $locA=$row['loc_a'];
         $locB=$row['loc_b'];
@@ -118,8 +120,9 @@ include('../includes/dbcon.php');
         $cprice=$row['c_price'];
         $oprice=$row['o_price'];
 ?>                      
-                      <tr>
+                      <tr>						    
                         <td><?php echo $date;?></td>
+                        <td><?php echo $u_id;?></td>
                         <td><?php echo $locA;?></td>
                         <td><?php echo $locB;?></td>
                         <td><?php echo $estDist;?></td>
